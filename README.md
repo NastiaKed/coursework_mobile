@@ -1,1 +1,1 @@
-CoursWork Mobile
+Courswork Mobile
