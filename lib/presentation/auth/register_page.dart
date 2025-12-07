@@ -28,9 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
               const SizedBox(height: 20),
               Image.asset(
                 'assets/images/auth_illustration.png',
@@ -51,10 +49,7 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(height: 6),
               const Text(
                 'Join us to explore menus',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.black54,
-                ),
+                style: TextStyle(fontSize: 14, color: Colors.black54),
               ),
 
               const SizedBox(height: 36),
@@ -97,48 +92,51 @@ class _RegisterPageState extends State<RegisterPage> {
                 width: double.infinity,
                 height: 48,
                 child: ElevatedButton(
-                  onPressed: loading ? null : () async {
-                    if (passwordController.text.trim() != confirmController.text.trim()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Passwords do not match'),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
-                      return;
-                    }
+                  onPressed: loading
+                      ? null
+                      : () async {
+                          if (passwordController.text.trim() !=
+                              confirmController.text.trim()) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Passwords do not match'),
+                                backgroundColor: Colors.red,
+                              ),
+                            );
+                            return;
+                          }
+                          setState(() => loading = true);
+                          try {
+                            await AuthRepository().register(
+                              username: usernameController.text.trim(),
+                              email: emailController.text.trim(),
+                              password: passwordController.text.trim(),
+                            );
 
-                    setState(() => loading = true);
+                            if (!context.mounted) return;
 
-                    try {
-                      await AuthRepository().register(
-                        username: usernameController.text.trim(),
-                        email: emailController.text.trim(),
-                        password: passwordController.text.trim(),
-                      );
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Registration successful!'),
+                                backgroundColor: Colors.green,
+                              ),
+                            );
 
-                      if (!mounted) return;
-
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Registration successful!'),
-                          backgroundColor: Colors.green,
-                        ),
-                      );
-
-                      Navigator.pushReplacementNamed(context, AppRoutes.login);
-
-                    } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Error: ${e.toString()}'),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
-                    } finally {
-                      if (mounted) setState(() => loading = false);
-                    }
-                  },
+                            Navigator.pushReplacementNamed(
+                              context,
+                              AppRoutes.login,
+                            );
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Error: ${e.toString()}'),
+                                backgroundColor: Colors.red,
+                              ),
+                            );
+                          } finally {
+                            if (mounted) setState(() => loading = false);
+                          }
+                        },
                   child: Text(
                     loading ? 'Loading...' : 'Sign up',
                     style: const TextStyle(fontSize: 16),
@@ -152,7 +150,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
               // ---------- Login Redirect ----------
               GestureDetector(
-                onTap: () => Navigator.pushReplacementNamed(context, AppRoutes.login),
+                onTap: () =>
+                    Navigator.pushReplacementNamed(context, AppRoutes.login),
                 child: const Text(
                   'Have an account?  Log in',
                   style: TextStyle(
@@ -187,9 +186,9 @@ class _RegisterPageState extends State<RegisterPage> {
         suffixIcon: icon == null
             ? null
             : GestureDetector(
-          onTap: onIconTap,
-          child: Icon(icon, color: Colors.black),
-        ),
+                onTap: onIconTap,
+                child: Icon(icon, color: Colors.black),
+              ),
       ),
     );
   }
