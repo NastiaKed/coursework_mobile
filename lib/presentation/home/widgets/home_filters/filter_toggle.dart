@@ -23,7 +23,6 @@ class FilterToggle extends StatelessWidget {
           color: active ? Colors.black : Colors.white,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: Colors.black,
             width: 1.3,
           ),
         ),

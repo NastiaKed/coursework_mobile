@@ -21,7 +21,7 @@ class DeliverySection extends StatelessWidget {
         Expanded(
           child: DeliveryOptionCard(
             title: "Кур'єр",
-            subtitle: "${deliveryFee.toStringAsFixed(0)} ₴",
+            subtitle: '${deliveryFee.toStringAsFixed(0)} ₴',
             icon: Icons.delivery_dining,
             isSelected: selectedType == DeliveryType.courier,
             onTap: () => onTypeChanged(DeliveryType.courier),
@@ -30,8 +30,8 @@ class DeliverySection extends StatelessWidget {
         const SizedBox(width: 12),
         Expanded(
           child: DeliveryOptionCard(
-            title: "Самовивіз",
-            subtitle: "Безкоштовно",
+            title: 'Самовивіз',
+            subtitle: 'Безкоштовно',
             icon: Icons.storefront_outlined,
             isSelected: selectedType == DeliveryType.pickup,
             onTap: () => onTypeChanged(DeliveryType.pickup),
@@ -70,7 +70,6 @@ class DeliveryOptionCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
             color: isSelected ? Colors.black : Colors.transparent,
-            width: 1,
           ),
         ),
         child: Column(

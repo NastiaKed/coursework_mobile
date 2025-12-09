@@ -6,21 +6,19 @@ class RestaurantsRepository {
   final RestaurantsService _service = RestaurantsService();
 
   Future<List<Restaurant>> fetchRestaurants() async {
-    try {
-      return await _service.getAllRestaurants();
-    } catch (e) {
-      debugPrint('❌ fetchRestaurants error: $e');
-      return [];
-    }
+    return await _handle(
+      _service.getAllRestaurants,
+      fallback: const [],
+      label: 'fetchRestaurants',
+    );
   }
 
   Future<List<Restaurant>> fetchSorted(String sortBy) async {
-    try {
-      return await _service.getSortedRestaurants(sortBy);
-    } catch (e) {
-      debugPrint('❌ fetchSorted error: $e');
-      return [];
-    }
+    return await _handle(
+      () => _service.getSortedRestaurants(sortBy),
+      fallback: const [],
+      label: 'fetchSorted',
+    );
   }
 
   Future<String?> saveFiltered({
@@ -49,12 +47,11 @@ class RestaurantsRepository {
   Future<List<Restaurant>> fetchSavedFiltered({
     required String searchId,
   }) async {
-    try {
-      return await _service.getSavedFiltered(searchId: searchId);
-    } catch (e) {
-      debugPrint('❌ fetchSavedFiltered error: $e');
-      return [];
-    }
+    return await _handle(
+      () => _service.getSavedFiltered(searchId: searchId),
+      fallback: const [],
+      label: 'fetchSavedFiltered',
+    );
   }
 
   Future<Restaurant?> fetchRestaurantById(int id) async {
@@ -64,6 +61,19 @@ class RestaurantsRepository {
     } catch (e) {
       debugPrint('❌ fetchRestaurantById error: $e');
       return null;
+    }
+  }
+
+  Future<T> _handle<T>(
+    Future<T> Function() call, {
+    required T fallback,
+    required String label,
+  }) async {
+    try {
+      return await call();
+    } catch (e) {
+      debugPrint('❌ $label error: $e');
+      return fallback;
     }
   }
 }

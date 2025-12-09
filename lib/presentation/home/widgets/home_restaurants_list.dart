@@ -39,7 +39,7 @@ class HomeRestaurantsList extends StatelessWidget {
           child: InkWell(
             borderRadius: BorderRadius.circular(16),
             onTap: () => _openRestaurantDetails(context, r),
-            child: Container(
+            child: DecoratedBox(
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
@@ -48,8 +48,6 @@ class HomeRestaurantsList extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
-                  // IMAGE -------------------------------------------------------
                   ClipRRect(
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(16),
@@ -57,29 +55,30 @@ class HomeRestaurantsList extends StatelessWidget {
                     ),
                     child: r.imageUrl.startsWith('http')
                         ? Image.network(
-                      r.imageUrl,
-                      height: 170,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Image.asset(
-                        'assets/images/food.png',
-                        height: 170,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                    )
+                            r.imageUrl,
+                            height: 170,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                            errorBuilder: (_, __, ___) => Image.asset(
+                              'assets/images/food.png',
+                              height: 170,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                          )
                         : Image.asset(
-                      r.imageUrl,
-                      height: 170,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
+                            r.imageUrl,
+                            height: 170,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                          ),
                   ),
 
-                  // RESTAURANT NAME ----------------------------------------------
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 14, vertical: 12),
+                      horizontal: 14,
+                      vertical: 12,
+                    ),
                     child: Text(
                       r.name,
                       style: const TextStyle(
@@ -90,17 +89,21 @@ class HomeRestaurantsList extends StatelessWidget {
                     ),
                   ),
 
-                  // BOTTOM INFO ROW ---------------------------------------------
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 14, vertical: 10),
+                      horizontal: 14,
+                      vertical: 10,
+                    ),
                     child: Row(
                       children: [
-                        const Icon(Icons.pedal_bike,
-                            size: 16, color: Colors.black87),
+                        const Icon(
+                          Icons.pedal_bike,
+                          size: 16,
+                          color: Colors.black87,
+                        ),
                         const SizedBox(width: 5),
                         Text(
-                          "${r.deliveryTime} min",
+                          '${r.deliveryTime} min',
                           style: const TextStyle(
                             fontSize: 13,
                             color: Colors.black87,
@@ -109,8 +112,7 @@ class HomeRestaurantsList extends StatelessWidget {
 
                         const SizedBox(width: 16),
 
-                        const Icon(Icons.star,
-                            size: 16, color: Colors.amber),
+                        const Icon(Icons.star, size: 16, color: Colors.amber),
                         const SizedBox(width: 4),
                         Text(
                           r.rating.toStringAsFixed(1),
@@ -124,8 +126,8 @@ class HomeRestaurantsList extends StatelessWidget {
 
                         Text(
                           r.deliveryFee == 0
-                              ? "Free"
-                              : "${r.deliveryFee.toStringAsFixed(0)}₴",
+                              ? 'Free'
+                              : '${r.deliveryFee.toStringAsFixed(0)}₴',
                           style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -135,7 +137,6 @@ class HomeRestaurantsList extends StatelessWidget {
                       ],
                     ),
                   ),
-
                 ],
               ),
             ),

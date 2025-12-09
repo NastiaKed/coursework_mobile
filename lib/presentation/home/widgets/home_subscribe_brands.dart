@@ -26,7 +26,7 @@ class _PremiumCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.black, width: 1.2),
+        border: Border.all(width: 1.2),
       ),
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -34,7 +34,7 @@ class _PremiumCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Premium",
+              'Premium',
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w700,
@@ -43,7 +43,7 @@ class _PremiumCard extends StatelessWidget {
             ),
             const SizedBox(height: 6),
             const Text(
-              "Save money on\ndelivery orders",
+              'Save money on\ndelivery orders',
               style: TextStyle(
                 fontSize: 12,
                 height: 1.3,
@@ -54,7 +54,7 @@ class _PremiumCard extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: Image.asset(
-                "assets/images/user-group-crown.png",
+                'assets/images/user-group-crown.png',
                 width: 28,
                 height: 28,
                 fit: BoxFit.contain,
@@ -79,20 +79,19 @@ class _BrandsCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.black, width: 1.2),
+        border: Border.all(width: 1.2),
       ),
       child: const Padding(
         padding: EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Title + arrow
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: Text(
-                    "Top brands",
+                    'Top brands',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
@@ -106,7 +105,6 @@ class _BrandsCard extends StatelessWidget {
 
             Spacer(),
 
-            // Logos Row
             Row(
               children: [
                 _BrandLogo(path: 'assets/images/macdonald.png'),
@@ -133,10 +131,7 @@ class _BrandLogo extends StatelessWidget {
       height: 42,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
-        child: Image.asset(
-          path,
-          fit: BoxFit.cover,
-        ),
+        child: Image.asset(path, fit: BoxFit.cover),
       ),
     );
   }

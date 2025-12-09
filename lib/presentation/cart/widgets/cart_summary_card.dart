@@ -21,7 +21,7 @@ class CartSummaryCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withValues(alpha: .06),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -34,12 +34,16 @@ class CartSummaryCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
-                color: Colors.green.withOpacity(0.08),
+                color: Colors.green.withValues(alpha: .08),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.card_giftcard, size: 18, color: Colors.green),
+                  const Icon(
+                    Icons.card_giftcard,
+                    size: 18,
+                    color: Colors.green,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     'Отримаєте бонусів:',
@@ -109,10 +113,7 @@ class CartSummaryCard extends StatelessWidget {
                 children: [
                   Text(
                     'Оформити замовлення',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                   SizedBox(width: 8),
                   Icon(Icons.arrow_forward_rounded, size: 20),

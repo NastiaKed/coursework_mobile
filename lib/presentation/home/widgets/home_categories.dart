@@ -29,7 +29,6 @@ class HomeCategories extends StatelessWidget {
               color: isSelected ? Colors.white : Colors.black,
               borderRadius: BorderRadius.circular(30),
               border: Border.all(
-                color: Colors.black,
                 width: 1.2,
               ),
             ),

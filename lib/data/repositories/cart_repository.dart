@@ -10,43 +10,51 @@ class CartRepository {
     required int dishId,
     int quantity = 1,
   }) async {
-    try {
-      final result = await _service.addToCart(
+    return await _handleRequest<Object>(
+      () => _service.addToCart(
         userId: userId,
         dishId: dishId,
         quantity: quantity,
-      );
-      return result;
-    } catch (e) {
-      debugPrint('❌ addDishToCart error: $e');
-      return false;
-    }
+      ),
+      defaultValue: false,
+      label: 'addDishToCart',
+    );
   }
 
   Future<List<CartItem>> fetchCart(int userId) async {
-    try {
-      return await _service.getCart(userId);
-    } catch (e) {
-      debugPrint('❌ fetchCart error: $e');
-      return [];
-    }
+    return await _handleRequest<List<CartItem>>(
+      () => _service.getCart(userId),
+      defaultValue: const [],
+      label: 'fetchCart',
+    );
   }
 
   Future<bool> clearCart(int userId) async {
-    try {
-      return await _service.clearCart(userId);
-    } catch (e) {
-      debugPrint('❌ clearCart error: $e');
-      return false;
-    }
+    return await _handleRequest<bool>(
+      () => _service.clearCart(userId),
+      defaultValue: false,
+      label: 'clearCart',
+    );
   }
 
   Future<bool> checkout(int userId) async {
+    return await _handleRequest<bool>(
+      () => _service.checkout(userId),
+      defaultValue: false,
+      label: 'checkout',
+    );
+  }
+
+  Future<T> _handleRequest<T>(
+    Future<T> Function() call, {
+    required T defaultValue,
+    required String label,
+  }) async {
     try {
-      return await _service.checkout(userId);
+      return await call();
     } catch (e) {
-      debugPrint('❌ checkout error: $e');
-      return false;
+      debugPrint('❌ $label error: $e');
+      return defaultValue;
     }
   }
 }

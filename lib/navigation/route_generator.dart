@@ -5,7 +5,7 @@ import 'package:cours_work/presentation/auth/register_page.dart';
 import 'package:cours_work/presentation/cart/cart_page.dart';
 import 'package:cours_work/presentation/cart/success_page.dart';
 import 'package:cours_work/presentation/navigation/navigation_root.dart';
-import 'package:cours_work/presentation/profile/pages/admin_users_page.dart';
+import 'package:cours_work/presentation/profile/pages/admin_restaurants_page.dart';
 import 'package:cours_work/presentation/profile/pages/profile_orders_page.dart';
 import 'package:cours_work/presentation/profile/profile_page.dart';
 import 'package:cours_work/presentation/restaurant_details/restaurant_details_page.dart';
@@ -45,8 +45,8 @@ class RouteGenerator {
       case AppRoutes.success:
         return MaterialPageRoute(builder: (_) => const OrderSuccessPage());
 
-      case AppRoutes.adminUsers:
-        return MaterialPageRoute(builder: (_) => const AdminUsersPage());
+      case AppRoutes.admin:
+        return MaterialPageRoute(builder: (_) => const AdminRestaurantsPage());
 
       default:
         return _errorRoute();

@@ -17,9 +17,7 @@ Future<void> main() async {
       AndroidInitializationSettings('@mipmap/ic_launcher');
 
   const DarwinInitializationSettings iosSettings = DarwinInitializationSettings(
-    requestAlertPermission: true,
-    requestBadgePermission: true,
-    requestSoundPermission: true,
+
   );
 
   const InitializationSettings initSettings = InitializationSettings(
@@ -35,7 +33,7 @@ Future<void> main() async {
       >()
       ?.requestNotificationsPermission();
 
-  debugPrint("Notification permission granted: $granted");
+  debugPrint('Notification permission granted: $granted');
 
   runApp(const BlueBiteApp());
 }

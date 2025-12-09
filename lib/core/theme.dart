@@ -37,31 +37,27 @@ final ThemeData appTheme = ThemeData(
     ),
   ),
 
-  // TextField — білі з чорним бордером
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     fillColor: AppColors.background,
     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
     hintStyle: TextStyle(
-      color: AppColors.text.withOpacity(0.4),
+      color: AppColors.text.withValues(alpha: 0.4),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
       borderSide: const BorderSide(
-        color: AppColors.inputBorder,
         width: 1.3,
       ),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
       borderSide: const BorderSide(
-        color: AppColors.inputBorder,
         width: 1.6,
       ),
     ),
   ),
 
-  // Bottom Navigation Bar
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     backgroundColor: AppColors.background,
     selectedItemColor: AppColors.primary,

@@ -14,7 +14,9 @@ class RestaurantCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isActive = restaurant['is_active'] == 1 || restaurant['is_active'] == true;
+    final isActive =
+        restaurant['is_active'] == 1
+            || restaurant['is_active'] == true;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
@@ -26,7 +28,7 @@ class RestaurantCard extends StatelessWidget {
             blurRadius: 15,
             offset: const Offset(0, 5),
             color: Colors.black.withValues(alpha: .05),
-          )
+          ),
         ],
       ),
       child: ClipRRect(
@@ -45,20 +47,25 @@ class RestaurantCard extends StatelessWidget {
                     errorBuilder: (ctx, err, stack) => Container(
                       height: 160,
                       color: Colors.grey[200],
-                      child: const Center(child: Icon(Icons.image_not_supported)),
+                      child: const Center(
+                        child: Icon(Icons.image_not_supported),
+                      ),
                     ),
                   ),
                   Positioned(
                     top: 12,
                     left: 12,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 6,
+                      ),
                       decoration: BoxDecoration(
                         color: isActive ? Colors.green : Colors.redAccent,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        isActive ? "Active" : "Inactive",
+                        isActive ? 'Active' : 'Inactive',
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 12,
@@ -89,14 +96,24 @@ class RestaurantCard extends StatelessWidget {
                         const SizedBox(height: 6),
                         Row(
                           children: [
-                            const Icon(Icons.star, size: 16, color: Colors.orange),
+                            const Icon(
+                              Icons.star,
+                              size: 16,
+                              color: Colors.orange,
+                            ),
                             const SizedBox(width: 4),
                             Text(
                               "${restaurant['rating']}",
-                              style: const TextStyle(fontWeight: FontWeight.bold),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             const SizedBox(width: 12),
-                            Icon(Icons.timer_outlined, size: 16, color: Colors.grey[600]),
+                            Icon(
+                              Icons.timer_outlined,
+                              size: 16,
+                              color: Colors.grey[600],
+                            ),
                             const SizedBox(width: 4),
                             Text(
                               "${restaurant['delivery_time']} хв",
@@ -130,7 +147,7 @@ class RestaurantCard extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
