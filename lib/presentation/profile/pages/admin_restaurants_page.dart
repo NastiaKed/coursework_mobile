@@ -62,7 +62,9 @@ class _AdminRestaurantsPageState extends State<AdminRestaurantsPage> {
           SnackBar(
             content: const Text('Ресторан видалено'),
             behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
         );
       }
@@ -95,7 +97,12 @@ class _AdminRestaurantsPageState extends State<AdminRestaurantsPage> {
         if (snapshot.data == false) {
           return const Scaffold(
             backgroundColor: Colors.white,
-            body: Center(child: Text("У вас немає доступу", style: TextStyle(fontSize: 18))),
+            body: Center(
+              child: Text(
+                'У вас немає доступу',
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
           );
         }
 
@@ -103,8 +110,11 @@ class _AdminRestaurantsPageState extends State<AdminRestaurantsPage> {
           backgroundColor: Colors.grey[50],
           appBar: AppBar(
             title: const Text(
-              "Адмін — Ресторани",
-              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              'Адмін — Ресторани',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
             backgroundColor: Colors.white,
             elevation: 0,
@@ -112,22 +122,24 @@ class _AdminRestaurantsPageState extends State<AdminRestaurantsPage> {
             centerTitle: true,
           ),
           body: loading
-              ? const Center(child: CircularProgressIndicator(color: Colors.black))
+              ? const Center(
+                  child: CircularProgressIndicator(color: Colors.black),
+                )
               : ListView.builder(
-            padding: const EdgeInsets.all(16),
-            itemCount: restaurants.length,
-            itemBuilder: (_, i) {
-              final r = restaurants[i];
-              return RestaurantCard(
-                restaurant: r,
-                onEdit: () => _showEditDialog(r),
-                onDelete: () {
-                  final id = int.tryParse(r['id'].toString());
-                  if (id != null) _deleteRestaurant(id);
-                },
-              );
-            },
-          ),
+                  padding: const EdgeInsets.all(16),
+                  itemCount: restaurants.length,
+                  itemBuilder: (_, i) {
+                    final r = restaurants[i];
+                    return RestaurantCard(
+                      restaurant: r,
+                      onEdit: () => _showEditDialog(r),
+                      onDelete: () {
+                        final id = int.tryParse(r['id'].toString());
+                        if (id != null) _deleteRestaurant(id);
+                      },
+                    );
+                  },
+                ),
         );
       },
     );

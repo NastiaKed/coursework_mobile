@@ -20,12 +20,8 @@ class Dish {
       id: (json['id'] ?? 0) as int,
       name: (json['name'] ?? '') as String,
       description: (json['description'] ?? '') as String,
-      price: (json['price'] is num)
-          ? (json['price'] as num).toDouble()
-          : double.tryParse(json['price']?.toString() ?? '0') ?? 0.0,
-      weight: (json['weight'] is num)
-          ? (json['weight'] as num).toDouble()
-          : double.tryParse(json['weight']?.toString() ?? '0') ?? 0.0,
+      price: _toDouble(json['price']),
+      weight: _toDouble(json['weight']),
       imageUrl: (json['image_url'] ?? '') as String,
     );
   }
@@ -62,20 +58,11 @@ class Restaurant {
       name: (json['name'] ?? '') as String,
       description: (json['description'] ?? '') as String,
       imageUrl: (json['image_url'] ?? '') as String,
-      rating: (json['rating'] is num)
-          ? (json['rating'] as num).toDouble()
-          : double.tryParse(json['rating']?.toString() ?? '0') ?? 0.0,
+      rating: _toDouble(json['rating']),
       deliveryTime: (json['delivery_time'] ?? 0) as int,
-      deliveryFee: (json['delivery_fee'] is num)
-          ? (json['delivery_fee'] as num).toDouble()
-          : double.tryParse(json['delivery_fee']?.toString() ?? '0') ?? 0.0,
-      minOrder: (json['min_order'] is num)
-          ? (json['min_order'] as num).toDouble()
-          : double.tryParse(json['min_order']?.toString() ?? '0') ?? 0.0,
-      distance: (json['distance'] is num)
-          ? (json['distance'] as num).toDouble()
-          : double.tryParse(json['distance']?.toString() ?? '0') ?? 0.0,
-
+      deliveryFee: _toDouble(json['delivery_fee']),
+      minOrder: _toDouble(json['min_order']),
+      distance: _toDouble(json['distance']),
       dishes:
           (json['dishes'] as List<dynamic>?)
               ?.map((e) => Dish.fromJson(e as Map<String, dynamic>))
@@ -83,4 +70,9 @@ class Restaurant {
           [],
     );
   }
+}
+
+double _toDouble(dynamic value) {
+  if (value is num) return value.toDouble();
+  return double.tryParse(value?.toString() ?? '') ?? 0.0;
 }

@@ -87,7 +87,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
               const SizedBox(height: 32),
 
-              // ---------- Button ----------
               SizedBox(
                 width: double.infinity,
                 height: 48,
@@ -148,7 +147,6 @@ class _RegisterPageState extends State<RegisterPage> {
               const Divider(height: 1, color: Colors.black26),
               const SizedBox(height: 20),
 
-              // ---------- Login Redirect ----------
               GestureDetector(
                 onTap: () =>
                     Navigator.pushReplacementNamed(context, AppRoutes.login),
@@ -170,7 +168,6 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  // ---------- Input builder ----------
   Widget _inputField({
     required TextEditingController controller,
     required String hint,

@@ -108,9 +108,9 @@ class _CartPageState extends State<CartPage> {
       _startNotifications();
       Navigator.pushNamed(context, AppRoutes.success);
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Помилка оформлення')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Помилка оформлення')));
     }
   }
 
@@ -161,15 +161,25 @@ class _CartPageState extends State<CartPage> {
           backgroundColor: Colors.white,
           elevation: 0,
           iconTheme: const IconThemeData(color: Colors.black),
-          title: const Text('Кошик', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+          title: const Text(
+            'Кошик',
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.shopping_cart_outlined, size: 80, color: Colors.grey[300]),
+              Icon(
+                Icons.shopping_cart_outlined,
+                size: 80,
+                color: Colors.grey[300],
+              ),
               const SizedBox(height: 16),
-              const Text('Кошик порожній', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+              const Text(
+                'Кошик порожній',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              ),
             ],
           ),
         ),
@@ -197,7 +207,7 @@ class _CartPageState extends State<CartPage> {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         children: [
           _buildSectionTitle('Замовлення'),
-          Container(
+          DecoratedBox(
             decoration: _boxDecoration(),
             child: Column(
               children: [
@@ -207,11 +217,19 @@ class _CartPageState extends State<CartPage> {
                   return Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
                         child: CartItemTile(item: item),
                       ),
                       if (index != _cart.length - 1)
-                        Divider(height: 1, color: Colors.grey[200], indent: 16, endIndent: 16),
+                        Divider(
+                          height: 1,
+                          color: Colors.grey[200],
+                          indent: 16,
+                          endIndent: 16,
+                        ),
                     ],
                   );
                 }),
@@ -289,7 +307,7 @@ class _CartPageState extends State<CartPage> {
       borderRadius: BorderRadius.circular(16),
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.04),
+          color: Colors.black.withValues(alpha: .04),
           blurRadius: 10,
           offset: const Offset(0, 4),
         ),

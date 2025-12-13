@@ -23,9 +23,8 @@ class AuthRepository {
 
       final payload = Jwt.parseJwt(token);
 
-      final dynamic rawId = payload['id'];
-      final int? userId = rawId is int ? rawId : int.tryParse(rawId.toString());
-
+      final rawId = payload['id'];
+      final userId = rawId is int ? rawId : int.tryParse(rawId.toString());
       if (userId == null) {
         throw Exception('Помилка: не вдалося отримати userId з токена.');
       }
@@ -33,11 +32,8 @@ class AuthRepository {
       await LocalStorage.saveUserId(userId);
 
       final profile = await _profileApi.getProfile();
-
-      final bool isAdmin =
-          profile['is_admin'] == 1 ||
-          profile['is_admin'] == true ||
-          profile['is_admin'] == '1';
+      final rawAdmin = profile['is_admin'];
+      final isAdmin = rawAdmin == true || rawAdmin == 1 || rawAdmin == '1';
 
       await LocalStorage.saveIsAdmin(isAdmin);
 
@@ -48,9 +44,7 @@ class AuthRepository {
       return token;
     } on DioException catch (e) {
       final code = e.response?.statusCode;
-      final detail = e.response?.data is Map
-          ? e.response?.data['detail']?.toString()
-          : null;
+      final detail = _extractDetail(e);
 
       if (code == 401) throw Exception('Невірний логін або пароль.');
       if (code == 400 && detail != null) throw Exception(detail);
@@ -73,9 +67,7 @@ class AuthRepository {
       await _api.register(username: username, email: email, password: password);
     } on DioException catch (e) {
       final code = e.response?.statusCode;
-      final detail = e.response?.data is Map
-          ? e.response?.data['detail']?.toString()
-          : null;
+      final detail = _extractDetail(e);
 
       if (code == 400 && detail != null) throw Exception(detail);
       if (code == 500) throw Exception('Помилка сервера. Спробуйте пізніше.');
@@ -86,5 +78,13 @@ class AuthRepository {
     } catch (_) {
       throw Exception('Сталася невідома помилка. Спробуйте ще раз.');
     }
+  }
+
+  String? _extractDetail(DioException e) {
+    final data = e.response?.data;
+    if (data is Map && data['detail'] != null) {
+      return data['detail'].toString();
+    }
+    return null;
   }
 }

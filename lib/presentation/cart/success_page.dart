@@ -49,12 +49,12 @@ class _OrderSuccessPageState extends State<OrderSuccessPage>
 
               ScaleTransition(
                 scale: _scaleAnimation,
-                child: Container(
+                child: DecoratedBox(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.green.withOpacity(0.2),
+                        color: Colors.green.withValues(alpha: .2),
                         blurRadius: 40,
                         spreadRadius: 5,
                         offset: const Offset(0, 10),

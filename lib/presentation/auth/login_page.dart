@@ -66,23 +66,20 @@ class _LoginPageState extends State<LoginPage> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
 
               const SizedBox(height: 20),
 
-              // ---------- Illustration ----------
               Image.asset(
-                "assets/images/auth_illustration.png",
+                'assets/images/auth_illustration.png',
                 height: 220,
                 fit: BoxFit.contain,
               ),
 
               const SizedBox(height: 20),
 
-              // ---------- Title ----------
               const Text(
-                "MenuExplorer",
+                'MenuExplorer',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w700,
@@ -91,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 6),
               const Text(
-                "Welcome back!",
+                'Welcome back!',
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.black54,
@@ -100,17 +97,16 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 36),
 
-              // ---------- Input Fields ----------
               _inputField(
                 controller: emailController,
-                hint: "Username",
+                hint: 'Username',
                 icon: Icons.person,
               ),
               const SizedBox(height: 18),
 
               _inputField(
                 controller: passwordController,
-                hint: "Password",
+                hint: 'Password',
                 obscure: obscureText,
                 icon: obscureText ? Icons.visibility_off : Icons.visibility,
                 onIconTap: () =>
@@ -119,7 +115,6 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 18),
 
-              // -------- Remember me ----------
               Row(
                 children: [
                   Checkbox(
@@ -129,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                         setState(() => rememberMe = v ?? false),
                   ),
                   const Text(
-                    "Remember me",
+                    'Remember me',
                     style: TextStyle(color: Colors.black87),
                   ),
                 ],
@@ -137,14 +132,13 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 32),
 
-              // ---------- Login Button ----------
               SizedBox(
                 width: double.infinity,
                 height: 48,
                 child: ElevatedButton(
                   onPressed: loading ? null : _login,
                   child: Text(
-                    loading ? "Loading..." : "Log in",
+                    loading ? 'Loading...' : 'Log in',
                     style: const TextStyle(fontSize: 16),
                   ),
                 ),
@@ -154,7 +148,6 @@ class _LoginPageState extends State<LoginPage> {
               const Divider(height: 1, color: Colors.black26),
               const SizedBox(height: 20),
 
-              // ---------- Go to Register ----------
               GestureDetector(
                 onTap: () => Navigator.pushNamed(context, AppRoutes.register),
                 child: const Text(
@@ -177,7 +170,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
 
-  // ---------- Custom Input ----------
   Widget _inputField({
     required TextEditingController controller,
     required String hint,

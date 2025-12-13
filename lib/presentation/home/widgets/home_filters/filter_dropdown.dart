@@ -22,7 +22,6 @@ class FilterDropdown extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: Colors.black,
           width: 1.3,
         ),
       ),

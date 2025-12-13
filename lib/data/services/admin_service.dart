@@ -33,15 +33,15 @@ class AdminService {
     final Response<dynamic> res = await _dio.put(
       '/admin/restaurants/$id',
       data: {
-        "name": name,
-        "description": description,
-        "image_url": imageUrl,
-        "rating": rating,
-        "delivery_time": deliveryTime,
-        "delivery_fee": deliveryFee,
-        "min_order": minOrder,
-        "distance": distance,
-        "is_active": isActive ? 1 : 0,
+        'name': name,
+        'description': description,
+        'image_url': imageUrl,
+        'rating': rating,
+        'delivery_time': deliveryTime,
+        'delivery_fee': deliveryFee,
+        'min_order': minOrder,
+        'distance': distance,
+        'is_active': isActive ? 1 : 0,
       },
     );
     return _isSuccess(res);

@@ -20,7 +20,7 @@ class AuthService {
     required String username,
     required String password,
   }) async {
-    final response = await _dio.post(
+    final response = await _dio.post<dynamic>(
       'auth/login',
       data: FormData.fromMap({'username': username, 'password': password}),
       options: Options(contentType: Headers.formUrlEncodedContentType),

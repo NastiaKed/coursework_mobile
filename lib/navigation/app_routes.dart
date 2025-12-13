@@ -10,5 +10,5 @@ class AppRoutes {
   static const String profileOrders = '/profile-orders';
   static const String root = '/root';
   static const success = '/success';
-  static const adminUsers = '/admin/users';
+  static const admin = '/admin/users';
 }

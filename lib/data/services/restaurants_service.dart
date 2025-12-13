@@ -9,7 +9,7 @@ class RestaurantsService {
   Future<List<Restaurant>> getAllRestaurants() async {
     try {
       final Response<List<dynamic>> res = await _dio.get<List<dynamic>>(
-        '/home/restaurants',
+        '/restaurants',
         options: Options(
           headers: {'Cache-Control': 'no-cache', 'Pragma': 'no-cache'},
         ),
@@ -28,7 +28,7 @@ class RestaurantsService {
   Future<List<Restaurant>> getSortedRestaurants(String sortBy) async {
     try {
       final Response<List<dynamic>> res = await _dio.get<List<dynamic>>(
-        '/home/restaurants/sort-by',
+        '/restaurants/sort-by',
         queryParameters: {'sort_by': sortBy},
         options: Options(
           headers: {'Cache-Control': 'no-cache', 'Pragma': 'no-cache'},
@@ -57,7 +57,7 @@ class RestaurantsService {
 
       final Response<Map<String, dynamic>> res = await _dio
           .post<Map<String, dynamic>>(
-        '/home/restaurants/save-filtered',
+        '/restaurants/filter',
         data: {
           'category_ids': categoryIds,
           'text_filter_ids': textFilterIds,
@@ -78,7 +78,7 @@ class RestaurantsService {
   Future<List<Restaurant>> getSavedFiltered({required String searchId}) async {
     try {
       final Response<List<dynamic>> res = await _dio.get(
-        '/home/restaurants/sort-filtered',
+        '/restaurants/sort-filtered',
         queryParameters: {'search_id': searchId},
       );
       final List<dynamic> data = res.data ?? [];
@@ -95,7 +95,7 @@ class RestaurantsService {
     try {
       final Response<Map<String, dynamic>> res =
       await _dio.get<Map<String, dynamic>>(
-        '/home/restaurants/$id',
+        '/restaurants/$id',
         options: Options(
           headers: {'Cache-Control': 'no-cache', 'Pragma': 'no-cache'},
         ),
